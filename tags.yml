@@ -1,0 +1,22 @@
+- name: Install and update packages
+  hosts: web_server
+
+  tasks:
+    - name: Update APT package cache
+      apt:
+        update_cache: yes
+      tags:
+        - update
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+      tags:
+        - install
+
+    - name: Always executed task
+      debug:
+        msg: "This task always runs!"
+      tags:
+        - always

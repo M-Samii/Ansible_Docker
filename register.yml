@@ -1,0 +1,22 @@
+
+- name: Install web server and restart if necessary
+  hosts: web_server
+  gather_facts: true
+  tasks:
+    - name: Install the package
+      apt:
+        name: nginx
+        state: latest
+      register: install_result
+      ignore_errors: yes
+
+    - name: View the value of the register variable
+      debug:
+        var: install_result
+
+    - name: Restart the service if the installation task was changed or did not fail
+      service:
+        name: nginx
+        state: restarted
+        use: service
+      when: install_result.changed or install_result.failed == false

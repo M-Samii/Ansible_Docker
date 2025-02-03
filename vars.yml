@@ -1,0 +1,13 @@
+---
+- name: My play with variables
+  hosts: web_server
+  become: yes
+  vars:
+    package: nginx
+    version: latest
+
+  tasks:
+    - name: My task with variables
+      apt:
+        name: "{{ package }}"
+        state: "{{ version }}"

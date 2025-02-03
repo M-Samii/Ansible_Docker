@@ -1,0 +1,14 @@
+---
+- name: Manage packages with different actions
+  hosts: web_server
+
+
+  tasks:
+    - name: Perform actions on packages
+      apt:
+        name: "{{ item.package_name }}"
+        state: "{{ item.package_state }}"
+      loop:
+        - { package_name: "nginx", package_state: "present" }
+        - { package_name: "mariadb-server", package_state: "latest" }
+        - { package_name: "curl", package_state: "absent" }
