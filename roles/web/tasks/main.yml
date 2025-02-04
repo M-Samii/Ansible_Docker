@@ -1,0 +1,19 @@
+- name: Install the required package
+  package:
+    name: "{{ package_name }}"
+    state: present
+
+
+- name: Copy template file to the host
+  template:
+    src: "{{ template_name }}"
+    dest: "/var/www/html/index.html"
+  notify: Restart service
+
+
+- name: Copy multiple files to the host
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/{{ package_name }}/"
+  loop: "{{ files_list }}"
+  notify: Verify files

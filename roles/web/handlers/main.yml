@@ -1,0 +1,16 @@
+- name: Restart service
+  service:
+    name: "{{ package_name }}"
+    state: restarted
+    use: service
+  notify: Reload service
+
+- name: Reload service
+  service:
+    name: "{{ package_name }}"
+    state: reloaded
+    use: service
+
+- name: Verify files
+  debug:
+    msg: "Files have been copied successfully!"

@@ -1,0 +1,6 @@
+package_name: nginx  
+template_name: index.html.j2
+files_list:
+  - file1.txt
+  - file2.txt
+  - file3.txt

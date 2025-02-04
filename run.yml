@@ -1,0 +1,6 @@
+- name: web role run
+  hosts: web_server
+  gather_facts: true
+  roles:
+    - web
+ 
